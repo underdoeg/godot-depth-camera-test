@@ -1,0 +1,10 @@
+# SCsub
+Import('env')
+
+module_env = env.Clone()
+module_env.add_source_files(env.modules_sources,"*.cpp")
+module_env.Append(CXXFLAGS=['-std=c++11', '-Imodules/interactiveWindow/astra/include'])
+module_env.ParseConfig('pkg-config --cflags --libs  pcl_common-1.8 pcl_io-1.8 eigen3')
+
+env.ParseConfig('pkg-config --cflags --libs  pcl_common-1.8 pcl_io-1.8 pcl_filters-1.8 pcl_segmentation-1.8 eigen3')
+env.Append(LIBS=['boost_system','freenect2'])
